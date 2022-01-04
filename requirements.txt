@@ -1,0 +1,4 @@
+pymongo==4.0.1
+aiogram==2.18
+python-dotenv==0.19.2
+requests==2.27.0
