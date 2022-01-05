@@ -15,7 +15,7 @@ def get_cad_object():
 class Realty:
     db = DB()
 
-    def form_request(self, chosen_option):
+    def form_request(self, info_from_message, chosen_option):
         get_cad_object()
         test_cad_obj = {'cad_num': random.randint(1000000, 1999999),
                         'address': f'Москва, ул. Тверская, д.{random.randint(1, 15)}',
@@ -25,24 +25,28 @@ class Realty:
 
         if chosen_option == 'realty_btn_dispute_cad_cost':
             self.db.insert_request(
+                info_from_message,
                 'Недвижимость',
                 'Оспорить кадастровую стоимость',
                 present_time,
                 test_cad_obj)
         if chosen_option == 'realty_btn_order_flat_check':
             self.db.insert_request(
+                info_from_message,
                 'Недвижимость',
                 'Заказать проверку квартиры',
                 present_time,
                 test_cad_obj)
         if chosen_option == 'realty_btn_exclude_700':
             self.db.insert_request(
+                info_from_message,
                 'Недвижимость',
                 'Исключить из Перечня (700 ПП)',
                 present_time,
                 test_cad_obj)
         if chosen_option == 'realty_btn_exclude_819':
             self.db.insert_request(
+                info_from_message,
                 'Недвижимость',
                 'Исключить из Самостроя (819 ПП)',
                 present_time,

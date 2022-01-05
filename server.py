@@ -78,7 +78,7 @@ async def use_global_switcher(message: types.Message):
     if realty_option_chosen:
         await bot.send_message(message.from_user.id, f'Введённый кадастровый номер: {message.text}',
                                reply_markup=markups.back_to_welcome_menu)
-        realty.form_request(chosen_option)
+        realty.form_request(message, chosen_option)
 
 
 if __name__ == '__main__':

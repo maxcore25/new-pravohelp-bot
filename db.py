@@ -13,8 +13,14 @@ users_collection = db.users
 
 
 class DB:
-    def insert_request(self, service, service_option, form_time, cad_obj):
+    def insert_request(self, info_from_message, service, service_option, form_time, cad_obj):
         requests_collection.insert_one({
+            'client': {
+                'tg_id': info_from_message['from']['id'],
+                'username': info_from_message['from']['username'],
+                'first_name': info_from_message['from']['first_name'],
+                'last_name': info_from_message['from']['last_name'],
+            },
             'service': service,
             'service_option': service_option,
             'form_time': form_time,
