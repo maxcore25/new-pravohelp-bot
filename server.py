@@ -78,8 +78,8 @@ async def use_global_switcher(message: types.Message):
     if realty_option_chosen:
         await bot.send_message(message.from_user.id,
                                f'''<b>Введённый кадастровый номер: {message.text}</b>
-                               Ваша заявка отправлена. В ближайшее время мы свяжемся с Вами в Telegram.
-                               Благодарим Вас за обращение!''',
+Ваша заявка отправлена. В ближайшее время мы свяжемся с Вами в Telegram.
+Благодарим Вас за обращение!''',
                                reply_markup=markups.back_to_welcome_menu)
         realty.form_request(message, chosen_option)
 
