@@ -1,7 +1,7 @@
 import datetime
 import requests
 import random
-from db import DB
+from db import DB, requests_counter
 
 
 def get_cad_object():
@@ -33,11 +33,24 @@ class Realty:
             chosen_option = 'Исключить из Самостроя (819 ПП)'
 
         self.db.insert_request(info_from_message, 'Недвижимость', chosen_option, present_time, test_cad_obj)
+        self.find_new_request()
 
     def form_user(self, tg_id, username, first_name, last_name):
         if not self.db.find_user_by_tg_id(tg_id):
             self.db.insert_user(tg_id, username, first_name, last_name)
             print('User inserted into "users" table')
 
-    def find_request(self):
-        return self.db.find_request_by_id()
+    def find_new_request(self, request_id=requests_counter):
+        request = self.db.find_request_by_id(request_id)
+        return f'''ID запроса: {request_id}
+Клиент: 
+    Username: {request["client"]["username"]}
+    Имя: {request["client"]["first_name"]}
+Услуга: {request["service"]}
+Опция услуги: {request["service_option"]}
+Время обращения: {request["form_time"]}
+Кад. объект:
+    Кад. номер: {request["cad_obj"]["cad_num"]}
+    Адрес: {request["cad_obj"]["address"]}
+    Количество владльцев: {request["cad_obj"]["owners_amount"]}
+    Кад. стоимость: {request["cad_obj"]["cad_cost"]}'''

@@ -84,8 +84,7 @@ async def use_global_switcher(message: types.Message):
 Благодарим Вас за обращение!''',
                                reply_markup=markups.back_to_welcome_menu)
         realty.form_request(message, chosen_option)
-        await bot.send_message(1027909953, 'New request')
-        print(realty.find_request())
+        await bot.send_message(1027909953, realty.find_new_request())
 
 
 if __name__ == '__main__':
