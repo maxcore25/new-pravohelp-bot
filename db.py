@@ -2,6 +2,7 @@ import os
 
 import pymongo
 from dotenv import load_dotenv
+from bson.objectid import ObjectId
 
 load_dotenv()
 
@@ -37,4 +38,4 @@ class DB:
         return users_collection.find_one({'tg_id': tg_id})
 
     def find_request_by_id(self):
-        return requests_collection.find_one({'form_time': '2022-01-06 12:20:44'})
+        return requests_collection.find_one({'_id': ObjectId('61d6b46c8f952d891af7c5de')})

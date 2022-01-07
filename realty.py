@@ -24,33 +24,15 @@ class Realty:
         present_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         if chosen_option == 'realty_btn_dispute_cad_cost':
-            self.db.insert_request(
-                info_from_message,
-                'Недвижимость',
-                'Оспорить кадастровую стоимость',
-                present_time,
-                test_cad_obj)
-        if chosen_option == 'realty_btn_order_flat_check':
-            self.db.insert_request(
-                info_from_message,
-                'Недвижимость',
-                'Заказать проверку квартиры',
-                present_time,
-                test_cad_obj)
-        if chosen_option == 'realty_btn_exclude_700':
-            self.db.insert_request(
-                info_from_message,
-                'Недвижимость',
-                'Исключить из Перечня (700 ПП)',
-                present_time,
-                test_cad_obj)
-        if chosen_option == 'realty_btn_exclude_819':
-            self.db.insert_request(
-                info_from_message,
-                'Недвижимость',
-                'Исключить из Самостроя (819 ПП)',
-                present_time,
-                test_cad_obj)
+            chosen_option = 'Оспорить кадастровую стоимость'
+        elif chosen_option == 'realty_btn_order_flat_check':
+            chosen_option = 'Заказать проверку квартиры'
+        elif chosen_option == 'realty_btn_exclude_700':
+            chosen_option = 'Исключить из Перечня (700 ПП)'
+        elif chosen_option == 'realty_btn_exclude_819':
+            chosen_option = 'Исключить из Самостроя (819 ПП)'
+
+        self.db.insert_request(info_from_message, 'Недвижимость', chosen_option, present_time, test_cad_obj)
 
     def form_user(self, tg_id, username, first_name, last_name):
         if not self.db.find_user_by_tg_id(tg_id):
