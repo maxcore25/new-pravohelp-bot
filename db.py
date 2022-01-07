@@ -35,3 +35,6 @@ class DB:
 
     def find_user_by_tg_id(self, tg_id):
         return users_collection.find_one({'tg_id': tg_id})
+
+    def find_request_by_id(self):
+        return requests_collection.find_one({'form_time': '2022-01-06 12:20:44'})

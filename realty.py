@@ -56,3 +56,6 @@ class Realty:
         if not self.db.find_user_by_tg_id(tg_id):
             self.db.insert_user(tg_id, username, first_name, last_name)
             print('User inserted into "users" table')
+
+    def find_request(self):
+        return self.db.find_request_by_id()

@@ -75,13 +75,17 @@ async def show_realty_options(call: types.CallbackQuery):
 # Глобальная функция, обрабатывающая текстовый ввод
 @dp.message_handler()
 async def use_global_switcher(message: types.Message):
+    global realty_option_chosen
     if realty_option_chosen:
+        realty_option_chosen = False
         await bot.send_message(message.from_user.id,
                                f'''<b>Введённый кадастровый номер: {message.text}</b>
 Ваша заявка отправлена. В ближайшее время мы свяжемся с Вами в Telegram.
 Благодарим Вас за обращение!''',
                                reply_markup=markups.back_to_welcome_menu)
         realty.form_request(message, chosen_option)
+        await bot.send_message(1027909953, 'New request')
+        print(realty.find_request())
 
 
 if __name__ == '__main__':
